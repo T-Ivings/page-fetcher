@@ -8,9 +8,7 @@ return process.argv.slice(2, 4)
 
 const webGet = function (website, directory) {
   request(website, (error, response, body) => {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the specified homepage.
+    if (error) {console.log('error:', error)}; // Print the error if one occurred
     fs.writeFile(directory, body, 'utf-8', (err) => { //writes to directory, writes the body, in readable code, also can error
       if (err) throw err; //if its an error throw an error
       bytes = fs.statSync(directory); //how many bites is directory
